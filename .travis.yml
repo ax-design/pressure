@@ -1,14 +1,12 @@
 language: node_js
-node_js: "11"
+node_js: '11'
 cache: yarn
 before_script:
-  - yarn
+- yarn
 script: yarn build
-
 before_deploy:
-  - tar czvf umd.tar.gz -C build .
-  - tar czvf es.tar.gz -C es .
-
+- tar czvf umd.tar.gz -C build .
+- tar czvf es.tar.gz -C es .
 deploy:
   - provider: releases
     api_key: "$GITHUB_KEY"
@@ -20,7 +18,8 @@ deploy:
       tags: true
   - provider: npm
     email: "$NPM_EMAIL"
-    api_key: "$NPM_KEY"
     skip_cleanup: true
+    api_key:
+      secure: "$NPM_KEY"
     on:
       tags: true
