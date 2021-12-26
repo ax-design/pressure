@@ -181,10 +181,10 @@
     </div>
   </section>
 
-  <!-- <script src="../../build/main.js"></script>
-  <script>AxPressure.register()</script> -->
+  <script src="../../build/main.js"></script>
   <script type="module">
     import { register } from 'https://unpkg.com/@ax-design/pressure/es/index.js';
-    register();
+    if (typeof AxPressure === 'object') AxPressure.register()
+    else register();
   </script>
 </body>
