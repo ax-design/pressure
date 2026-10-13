@@ -28,7 +28,7 @@ const ask = async (step: string) => {
     await new Promise((r) => setTimeout(r, 150));
     await frames(2);
 };
-const transform = (id: string) => (document.getElementById(id)!.shadowRoot!.querySelector('.tilt') as HTMLElement).style.transform;
+const transform = (id: string) => (document.getElementById(id)!.shadowRoot!.querySelector('.content') as HTMLElement).style.transform;
 const numbers = (t: string) => (t.match(/-?\d+(\.\d+)?(e-?\d+)?/g) || []).map(Number);
 
 // The original pressureManager formula, for a press at (x, y) of a w x h element.
