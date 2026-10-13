@@ -34,5 +34,15 @@
         "build",
         "es",
         "src"
-    ]
+    ],
+    "exports": {
+        ".": {
+            "types": "./es/index.d.ts",
+            "source": "./src/index.ts",
+            "import": "./es/index.js",
+            "require": "./build/main.js",
+            "default": "./es/index.js"
+        },
+        "./package.json": "./package.json"
+    }
 }
