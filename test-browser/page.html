@@ -1,0 +1,17 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>pressure browser test</title>
+<style>
+  body { margin: 0; padding: 40px; }
+  ax-pressure { width: 200px; height: 100px; display: block; margin-bottom: 30px; }
+  .box { width: 200px; height: 100px; background: #ddd; }
+  #rel { --pressure-tilt-mode: relative; --pressure-tilt-factor: 10; }
+  #inv { --pressure-invert: true; }
+  #nest ax-surface { width: 120px; height: 40px; margin: 30px; --ax-fill-color: #fff; --ax-radius: 8px; }
+</style></head>
+<body>
+<ax-pressure id="abs"><div class="box"></div></ax-pressure>
+<ax-pressure id="rel"><div class="box"></div></ax-pressure>
+<ax-pressure id="inv"><div class="box"></div></ax-pressure>
+<ax-pressure id="nest"><ax-surface id="inner" layers="fill"></ax-surface></ax-pressure>
+<script type="module" src="./page.ts"></script>
+</body></html>

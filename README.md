@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@ax-design/pressure"><img src="https://img.shields.io/npm/v/@ax-design/pressure.svg" alt="npm version"></a>
-  <a href="https://travis-ci.com/ax-design/pressure"><img src="https://travis-ci.com/ax-design/pressure.svg?branch=master" alt="CI Status"></a>
+  <a href="https://github.com/ax-design/pressure/actions/workflows/ci.yml"><img src="https://github.com/ax-design/pressure/actions/workflows/ci.yml/badge.svg" alt="CI Status"></a>
   <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT Licence" />
 
 </p>
@@ -40,7 +40,7 @@ register();
 
 ## Usage
 
-To add a reveal effect on your web application, you need to wrap a `ax-pressure` component with the component you want to add tile effect.
+To add a tilt effect on your web application, you need to wrap a `ax-pressure` component with the component you want to add tilt effect.
 Here's an example:
 
 ```html
@@ -79,3 +79,45 @@ Pressure component uses custom properties to manage the style of the tile effect
 **Default:** `25px`
 
 **Description:** To give the element some perspective, check out [this tutorial](https://www.w3schools.com/cssref/css3_pr_perspective.asp).
+
+### --pressure-tilt-mode
+
+**Type:** `absolute | relative`
+
+**Default:** `absolute`
+
+**Description:** `absolute` sinks the pressed side by `--pressure-tilt-depth`, `relative` tilts the element by `--pressure-tilt-factor` degrees.
+
+### --pressure-tilt-factor
+
+**Type:** `<number>`
+
+**Default:** `2`
+
+**Description:** The angle in degrees for `relative` mode.
+
+### --pressure-invert
+
+**Type:** `true | false`
+
+**Default:** `false`
+
+**Description:** `true` lifts the pressed side instead of sinking it.
+
+## With Surface
+
+Pressure runs on [Surface](https://github.com/ax-design/surface), it's the tilt of `ax-surface`. Other surfaces inside `ax-pressure`, like `ax-reveal`, follow your pointer correctly while the element is tilted. If you already use `ax-surface`, you can tilt it directly with `--ax-tilt-mode: absolute`.
+
+## Changes in 0.1
+
+* Pressure runs on Surface, it works in Firefox now, and in browsers without `CSS.registerProperty`.
+* Reveal highlights inside a tilted `ax-pressure` light up under your pointer.
+
+## Development
+
+```bash
+bun install
+bun run build         # es/, build/index.mjs, build/main.js
+bun run check         # type check
+bun run test:browser  # browser tests
+```
