@@ -112,6 +112,7 @@ Pressure runs on [Surface](https://github.com/ax-design/surface), it's the tilt 
 
 * Pressure runs on Surface, it works in Firefox now, and in browsers without `CSS.registerProperty`.
 * Reveal highlights inside a tilted `ax-pressure` light up under your pointer.
+* 0.1.1: Built on Surface 0.2.
 
 ## Development
 

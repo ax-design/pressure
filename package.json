@@ -1,6 +1,6 @@
 {
     "name": "@ax-design/pressure",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Web component that implements Tilt Effect of Axiom Design System.",
     "main": "build/main.js",
     "module": "es/index.js",
@@ -22,8 +22,8 @@
         "prepublishOnly": "bun run build"
     },
     "dependencies": {
-        "@ax-design/shape": "^0.1.0",
-        "@ax-design/surface": "^0.1.1",
+        "@ax-design/shape": "^0.2.0",
+        "@ax-design/surface": "^0.2.0",
         "@ax-design/typed-om": "^0.1.0"
     },
     "homepage": "https://github.com/ax-design/pressure#readme",
