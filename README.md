@@ -117,6 +117,10 @@ Pressure runs on [Surface](https://github.com/ax-design/surface), it's the tilt 
 * Reveal highlights inside a tilted `ax-pressure` light up under your pointer.
 * 0.1.1: Built on Surface 0.2.
 
+## Changes in 0.2
+
+* Built on Surface 0.3 and Shape 0.3, so a page with the other packages of that release loads one Surface. A pressure follows `motion()` and the display preferences of Surface 0.3 (forced colors, reduced motion).
+
 ## Development
 
 ```bash
