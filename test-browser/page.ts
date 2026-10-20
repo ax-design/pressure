@@ -29,6 +29,11 @@ const ask = async (step: string) => {
     await frames(2);
 };
 const transform = (id: string) => (document.getElementById(id)!.shadowRoot!.querySelector('.content') as HTMLElement).style.transform;
+// Firefox draws the tilt with the closest 2D transform (Surface 0.2.4 and later: a 3D transform
+// above acrylic turns its blur clear there), so its CSS cannot be read back as angles. The tilt
+// the surface computed is checked instead.
+const gecko = /Firefox\//.test(navigator.userAgent);
+const tiltOf = (id: string) => (document.getElementById(id) as unknown as { debugState: { tilt: { rotateX: number; rotateY: number; translateZ: number } | null } }).debugState.tilt;
 const numbers = (t: string) => (t.match(/-?\d+(\.\d+)?(e-?\d+)?/g) || []).map(Number);
 
 // The original pressureManager formula, for a press at (x, y) of a w x h element.
@@ -54,8 +59,9 @@ function expected(w: number, h: number, x: number, y: number, o: { mode: string;
 async function pressCase(id: string, o: { mode: string; depth: number; factor: number; invert: boolean; zoom: number }) {
     await ask(`press-${id}`);
     const t = transform(id);
-    // perspective(25px) rotateX(a) rotateY(b) translateZ(z)
-    const [, rx, ry, tz] = numbers(t);
+    // perspective(25px) rotateX(a) rotateY(b) translateZ(z); in Firefox the surface's own tilt.
+    const tilt = tiltOf(id);
+    const [, rx, ry, tz] = gecko && tilt ? [0, tilt.rotateX, tilt.rotateY, tilt.translateZ] : numbers(t);
     const [ex, ey, ez] = expected(200, 100, 190, 10, o);
     const ok = Math.abs(rx - ex) < 1e-3 && Math.abs(ry - ey) < 1e-3 && Math.abs(tz - ez) < 1e-3;
     check(`${id}: tilt matches the original formula`, ok, `${t} vs ${ex.toFixed(4)} ${ey.toFixed(4)} ${ez.toFixed(4)}`);
@@ -77,7 +83,7 @@ async function run() {
     const path = inner.shadowRoot!.querySelector('.layer-fill path');
     check('nested surface draws its shape', !!path && (path.getAttribute('d') || '').indexOf('A') > 0);
     await ask('press-nest');
-    check('nested surface tilts with the pressure', transform('nest').indexOf('rotateX') >= 0 && transform('inner') === '');
+    check('nested surface tilts with the pressure', (gecko ? /^matrix\(/.test(transform('nest')) : transform('nest').indexOf('rotateX') >= 0) && transform('inner') === '', `${transform('nest')} | ${transform('inner')}`);
     await ask('release');
     return { userAgent: navigator.userAgent, checks };
 }
