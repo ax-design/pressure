@@ -120,6 +120,7 @@ Pressure runs on [Surface](https://github.com/ax-design/surface), it's the tilt 
 ## Changes in 0.2
 
 * Built on Surface 0.3 and Shape 0.3, so a page with the other packages of that release loads one Surface. A pressure follows `motion()` and the display preferences of Surface 0.3 (forced colors, reduced motion).
+* 0.2.1: Built on Surface 0.3.3, which maps a pointer through a scaled or zoomed ancestor, so a tilt under a zoomed page leans toward the pointer.
 
 ## Development
 
