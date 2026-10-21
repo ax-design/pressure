@@ -111,16 +111,9 @@ Pressure component uses custom properties to manage the style of the tile effect
 
 Pressure runs on [Surface](https://github.com/ax-design/surface), it's the tilt of `ax-surface`. Other surfaces inside `ax-pressure`, like `ax-reveal`, follow your pointer correctly while the element is tilted. If you already use `ax-surface`, you can tilt it directly with `--ax-tilt-mode: absolute`.
 
-## Changes in 0.1
+## Changelog
 
-* Pressure runs on Surface, it works in Firefox now, and in browsers without `CSS.registerProperty`.
-* Reveal highlights inside a tilted `ax-pressure` light up under your pointer.
-* 0.1.1: Built on Surface 0.2.
-
-## Changes in 0.2
-
-* Built on Surface 0.3 and Shape 0.3, so a page with the other packages of that release loads one Surface. A pressure follows `motion()` and the display preferences of Surface 0.3 (forced colors, reduced motion).
-* 0.2.1: Built on Surface 0.3.3, which maps a pointer through a scaled or zoomed ancestor, so a tilt under a zoomed page leans toward the pointer.
+See [CHANGELOG.md](CHANGELOG.md).
 
 ## Development
 
