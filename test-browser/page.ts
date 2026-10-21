@@ -80,7 +80,11 @@ async function run() {
 
     // A surface inside a pressure: drawn, and tilted with it.
     const inner = document.getElementById('inner')!;
-    const path = inner.shadowRoot!.querySelector('.layer-fill path');
+    // The painted path, not the clip path: since surface 0.3.2 the clip is left empty when no border is drawn.
+    const path = [...inner.shadowRoot!.querySelectorAll('.layer-fill path')].find((p) => {
+        const fill = p.getAttribute('fill');
+        return !!fill && fill !== 'none';
+    });
     check('nested surface draws its shape', !!path && (path.getAttribute('d') || '').indexOf('A') > 0);
     await ask('press-nest');
     check('nested surface tilts with the pressure', (gecko ? /^matrix\(/.test(transform('nest')) : transform('nest').indexOf('rotateX') >= 0) && transform('inner') === '', `${transform('nest')} | ${transform('inner')}`);
