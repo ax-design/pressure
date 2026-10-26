@@ -28,7 +28,10 @@ interface Driver {
 
 async function playwright(name: string, url: string): Promise<Driver> {
     const pw = (await import('playwright')) as any;
-    const browser = await pw[name].launch();
+    // AX_BROWSER_PATH points the run at a system build instead (playwright's bundled binary is
+    // missing libnspr4 on NixOS).
+    const executablePath = process.env.AX_BROWSER_PATH;
+    const browser = await pw[name].launch(executablePath ? { executablePath } : {});
     const page = await browser.newPage({ viewport: { width: 700, height: 900 } });
     await page.goto(url);
     return {
