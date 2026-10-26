@@ -2,6 +2,10 @@
 
 All notable changes to this package are documented in this file.
 
+## 0.2.2
+
+- Depends on @ax-design/surface 0.4 and typed-om 0.3 (no duplicate copies next to packages that use them).
+
 ## 0.2.1
 
 - Built on Surface 0.3.3, which maps a pointer through a scaled or zoomed ancestor, so a tilt under a zoomed page leans toward the pointer.
